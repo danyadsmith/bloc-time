@@ -1,0 +1,6 @@
+# Mac OSX Ssytem Files and Folders
+*.DS_Store
+
+# Node.js
+/node_modules/*
+/.sass-cache/*
