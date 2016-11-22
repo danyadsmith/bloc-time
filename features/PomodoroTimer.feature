@@ -3,7 +3,8 @@ Feature: Pomodoro Work Session Timer
   Scenario: Start Pomodoro
     Given a default length setting for a Pomodoro work session in minutes
     When I click the start button
-    Then the timer counts down from the default Pomodoro length to zero
+    Then I am redirected to the Pomodoro Session In Progress View
+    And the timer counts down from the default Pomodoro length to zero
     And the timer displays the remaining time in the work session in minutes and seconds
     And the first available task in the MIT list changes to an active state
     And the timer plays a ticking sound at the volume level setting
@@ -41,7 +42,7 @@ Feature: Pomodoro Work Session Timer
     Given a Pomodoro work session was started or paused
     And there is remaining time left in the session
     When I click the cancel button
-    Then the active Pomodoro timer is reset to the default Pomodoro lenght
+    Then I am redirected to the Start Pomodoro view
     And the start button is visible
     And the work session pause button is hidden
     And the work session continue button is hidden
@@ -54,6 +55,7 @@ Feature: Pomodoro Work Session Timer
     And the timer plays a work session alarm
     And the number of Pomodoros for the active task increments by 1
     And the number of Pomodoros since the last break session increments by 1
+    And I am redirected to the Break Session view
     And the timer automatically starts a Break session timer
 
   Scenario: Start Short Break
@@ -73,10 +75,10 @@ Feature: Pomodoro Work Session Timer
     Given a Pomodoro break session has started 
     And there is remaining time left in the session
     When I click the cancel button
-    Then I am redirected to the default view 
+    Then I am redirected to the Start Pomodoro view 
 
   Scenario: Finish Break 
     Given a Pomodoro break session has started
     And the time remaining counts down to zero
     Then the timer plays a break session alarm 
-    And I am redirected to the default view
+    And I am redirected to the Start Pomodoro view
