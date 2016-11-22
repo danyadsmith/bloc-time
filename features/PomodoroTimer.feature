@@ -1,4 +1,4 @@
-Feature: Pomodoro Work Session Timer
+Feature: Pomodoro Session Timer
 
   Scenario: Start Pomodoro
     Given a default length setting for a Pomodoro work session in minutes
