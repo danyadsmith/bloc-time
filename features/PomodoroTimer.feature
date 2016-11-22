@@ -50,3 +50,21 @@ Feature: Pomodoro Work Session Timer
     And the number of Pomodoros for the active task increments by 1
     And the number of Pomodoros since the last break session increments by 1
     And the timer automatically starts the Break session timer
+
+  Scenario: Start Short Break
+    Given a Pomodoro work session has completed
+    And the number of work sesssions since the last break is less than the number of work sessions that trigger a long break 
+    Then the Short Break timer counts down from the Short Break length setting to zero
+    And the break session cancel button is visible
+
+  Scenario: Start Long Break
+    Given a Pomodoro work session has completed
+    And the number of work sessions since the last break is equal to the number of work sessions that trigger a long break
+    Then the Long Break timer counts down from the Long Break length setting to zero
+    And the break session cancel button is visible
+
+  Scenario: Cancel Break 
+    Given a Pomodoro break session has started 
+    And there is remaining time left in the session
+    When I click the cancel button
+    Then I am redirected to the default view 
