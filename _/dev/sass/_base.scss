@@ -1,0 +1,17 @@
+body, div {
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+}
+
+button {
+  text-align: center;
+  background-color: transparent;
+  border: 3px solid $white;
+  border-radius: 15px;
+  width: 60%;
+  margin: 0 auto;
+}

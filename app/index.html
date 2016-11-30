@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html ng-app="blocTime">
+
+<head>
+  <meta charset="utf-8">
+  <title>BlocTime</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:300,400,600">
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.10/buzz.min.js"></script>
+</head>
+
+<body>
+  <div id="Tasks" ui-view="tasksPanel"></div>
+  <div id="Timer" ui-view="timerPanel"></div>
+  <ui-view></ui-view>
+  <script src="scripts/app.js"></script>
+  <script src="scripts/services/Pomodoro.js"></script>
+  <script src="scripts/controllers/TimerCtrl.js"></script>
+  <script src="scripts/controllers/TasksCtrl.js"></script>
+</body>
+
+</html>

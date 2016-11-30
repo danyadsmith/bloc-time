@@ -1,0 +1,59 @@
+#Timer {
+  @include span(6 of 24 last no-gutters);
+  background-color: $tomato;
+  color: $white;
+  font-family: 'Open Sans Condensed';
+  font-weight: 300;
+  height: 100vh;
+
+  &.work-session {
+    background-color: $stem;
+  }
+
+  &.break-session {
+    background-color: $sky;
+  }
+
+  h3 {
+    border: 1px solid $white;
+    border-radius: 10px;
+    font-size: 1.35em;
+    font-weight: 100;
+    height: 35px;
+    line-height: 35px;
+    margin: 0 auto;
+    padding: 2px 0 7px 0;
+    text-align: center;
+    width: 80%;
+
+    span {
+      background-color: $tomato;
+      border: 1px solid $white;
+      border-radius: 25px;
+      bottom: 0;
+      display: block;
+      font-family: 'Open Sans';
+      font-size: .4em;
+      height: 13px;
+      line-height: 13px;
+      margin: 0 auto;
+      padding: 0 10px;
+      position: relative;
+      text-transform: uppercase;
+      width: 25%;
+    }
+  }
+
+  p.timer {
+    border: 5px solid $white;
+    border-radius: 100%;
+    font-family: 'Open Sans';
+    font-size: 5em;
+    font-weight: 300;
+    height: 250px;
+    line-height: 250px;
+    margin: 70px auto;
+    text-align: center;
+    width: 250px;
+  }
+}

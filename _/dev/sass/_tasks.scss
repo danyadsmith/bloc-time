@@ -1,0 +1,12 @@
+#Tasks {
+  @include span(18 of 24 first no-gutters);
+  background-color: $mineshaft;
+  color: $tundora;
+  font-family: 'Open Sans Condensed';
+  font-weight: 300;
+  height: 100vh;
+
+  h2 {
+    margin-top: 96px;
+  }
+}
