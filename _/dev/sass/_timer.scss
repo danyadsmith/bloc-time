@@ -1,4 +1,4 @@
-#Timer {
+.timer-panel {
   @include span(6 of 24 last no-gutters);
   background-color: $tomato;
   color: $white;
@@ -10,11 +10,16 @@
     background-color: $stem;
   }
 
+  &.paused-session {
+    background-color: $seed;
+  }
+
   &.break-session {
     background-color: $sky;
   }
 
   h3 {
+    background-color: inherit;
     border: 1px solid $white;
     border-radius: 10px;
     font-size: 1.35em;
@@ -22,12 +27,12 @@
     height: 35px;
     line-height: 35px;
     margin: 0 auto;
-    padding: 2px 0 7px 0;
+    padding: 2px 0 7px;
     text-align: center;
     width: 80%;
 
     span {
-      background-color: $tomato;
+      background-color: inherit;
       border: 1px solid $white;
       border-radius: 25px;
       bottom: 0;
@@ -44,7 +49,7 @@
     }
   }
 
-  p.timer {
+  .timer {
     border: 5px solid $white;
     border-radius: 100%;
     font-family: 'Open Sans';
