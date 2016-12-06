@@ -1,14 +1,12 @@
 (function(){
   function TimerCtrl(PomodoroTimer){
-    this.myTimer = PomodoroTimer;
-    this.myTimer.startWorkSession();
-    this.workSessionData = this.myTimer.getCurrentWorkSessionData();
+    this.remaining = PomodoroTimer.startWorkSession(); 
   }
 
   angular
-    .module("blocTime")
-    .controller("TimerCtrl", [
-      "PomodoroTimer",
+    .module('blocTime')
+    .controller('TimerCtrl', [
+      'PomodoroTimer',
       TimerCtrl
     ]);
 })();

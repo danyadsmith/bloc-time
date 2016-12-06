@@ -1,5 +1,5 @@
 (function(){
-  function PomodoroTimer($rootScope){
+  function PomodoroTimer(){
     var PomodoroTimer = {};
     this.PomodoroTimer = PomodoroTimer;
 
@@ -37,46 +37,49 @@
       return Date.now() + ((minutes * 60) * 1000);
     };
 
-    var sessionCountdown = function(session, $containerID){
-      var clock = document.getElementById($containerID), 
-      pomodoroEnd = new Date(session.projectedEndTime);
-      session.remainingTime = countdown(pomodoroEnd).toString().replace(" minutes", ":00").replace(" seconds", "");
-      setInterval(function(){
-        session.remainingTime = countdown(pomodoroEnd).toString().replace(" minutes and ", ":").replace(" seconds", "");
-      }, 1000);
+    var calcRemainingTime = function(session) {
+      session.remainingTime = Date.parse(session.projectedEndTime) - Date.parse(new Date());
+      var seconds = Math.floor( (session.remainingTime/1000) % 60);
+      var minutes = Math.floor( (session.remainingTime/1000/60) % 60);
+      var hours = Math.floor( (session.remainingTime/(1000*60*60)) % 24 );
+      var days = Math.floor( session.remainingTime/(1000*60*60*24));
+      return {
+        minutes: minutes,
+        seconds: seconds,
+        hours: hours,
+        days: days
+      };
     };
 
     PomodoroTimer.getSettings = function(){
-        return this.settings;
-      };
+      return this.settings;
+    };
     PomodoroTimer.getCurrentWorkSessionData = function(){
-        return this.workSession;
-      };
+      return this.workSession;
+    };
     PomodoroTimer.getCurrentBreakSessionData = function(){
-        return this.breakSession;
-      };
+      return this.breakSession;
+    };
     PomodoroTimer.startWorkSession = function(){
-        this.workSession.started = true;
-        this.workSession.startTime = new Date();
-        this.workSession.projectedEndTime = new Date(setProjectedSessionEnd(this.settings.pomodoroLength));
-        try { sessionCountdown(this.workSession, "test"); } catch(e){ console.log("Error: " + e.message); }
-      };
+      this.workSession.started = true;
+      this.workSession.startTime = new Date();
+      this.workSession.projectedEndTime = new Date(setProjectedSessionEnd(this.settings.pomodoroLength));
+      try { return calcRemainingTime(this.workSession); } 
+      catch(e){ console.log('Error: ' + e.message); }
+    };
     PomodoroTimer.pauseWorkSession = function(){
-        this.workSession.paused = true;
-        this.workSession.started = false;
-        this.workSession.interruptions += 1;
-      };
+      this.workSession.paused = true;
+      this.workSession.started = false;
+      this.workSession.interruptions += 1;
+    };
 
     return PomodoroTimer;
 
   }
 
   angular
-    .module("blocTime")
-    .factory("PomodoroTimer", [
-      "$rootScope", 
-      PomodoroTimer
-    ]);
+    .module('blocTime')
+    .factory('PomodoroTimer', PomodoroTimer);
 
 })();
 

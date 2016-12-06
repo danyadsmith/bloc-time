@@ -1,5 +1,10 @@
 
 <h2><img src="assets/images/pomodoro.svg" alt="Pomodoro Timer" /><br>Pomodoro Timer</h2>
 <h3>Length of Next Pomodoro <span>In Minutes</span></h3>
-<p class="timer" id="time">{{ timer.workSessionData.remainingTime }}</p>
+<section class="timer">
+<p id="time">{{ timer.remaining.minutes }}:{{ timer.remaining.seconds }}</p>  
+</section>
 
+<div class="actions">
+  <a class="button" ng-click="timer.myTimer.startWorkSession()">Start</a>
+</div>
