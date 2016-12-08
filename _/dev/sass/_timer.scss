@@ -67,7 +67,7 @@
       padding-top: 100%;
     }
 
-    #time {
+    .time {
       bottom: 0;
       left: 0;
       position: absolute;
@@ -76,4 +76,31 @@
     }
   }
 
+  .actions {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+
+    .btn {
+      background-color: transparent;
+      border: 2px solid $white;
+      border-radius: 10px;
+      color: $white;
+      cursor: pointer;
+      display: block;
+      font-family: 'Open Sans';
+      font-size: 1.5em;
+      font-weight: 300;
+      height: 40px;
+      text-align: center;
+      width: 60%;
+      margin: 0 auto;
+    }
+
+    .half {
+      float: left;
+      width: 40%;
+      margin: 0 5%;
+    }
+  }
 }

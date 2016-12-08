@@ -1,17 +1,9 @@
-body, div {
-  padding: 0;
+body,
+div {
   margin: 0;
+  padding: 0;
 }
 
 h2 {
   text-align: center;
-}
-
-button {
-  text-align: center;
-  background-color: transparent;
-  border: 3px solid $white;
-  border-radius: 15px;
-  width: 60%;
-  margin: 0 auto;
 }
