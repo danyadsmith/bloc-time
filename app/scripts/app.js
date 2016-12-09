@@ -15,7 +15,7 @@
             templateUrl: "/templates/most_important_tasks.html"
           },
           'timerPanel': {
-            controller: "TimerCtrl as timer",
+            controller: "TimerController as timer",
             templateUrl: "/templates/timer.html"
           }
         }

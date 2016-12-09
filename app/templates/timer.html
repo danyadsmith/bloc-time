@@ -1,15 +1,15 @@
 
 <h2><img src="assets/images/pomodoro.svg" alt="Pomodoro Timer" /><br>Pomodoro Timer</h2>
-<h3>{{ timer.heading }}<span>In Minutes</span></h3>
+<h3>{{ heading }}<span>In Minutes</span></h3>
 <section class="timer">
-<p class="time">{{ timer.remaining | formatTime }}</p>  
+<p class="time">{{ remaining | formatTime }}</p>  
 </section>
 
 <div class="actions">
-  <button ng-show="!timer.started && !timer.paused" class="btn" ng-click="timer.countdown()">Start</button>
-  <button ng-show="timer.started && !timer.paused" class="btn half" ng-click="timer.pause()">Pause</button>
-  <button ng-show="timer.paused && !timer.started" class="btn half" ng-click="timer.continue()">Continue</button>
-  <button ng-show="timer.started || timer.paused" class="btn half" ng-click="timer.cancel()">Cancel</button>
+  <button ng-show="!started && !paused" class="btn" ng-click="timer.countdown()">Start</button>
+  <button ng-show="started && !paused" class="btn half" ng-click="timer.pause()">Pause</button>
+  <button ng-show="paused && !started" class="btn half" ng-click="timer.continue()">Continue</button>
+  <button ng-show="started || paused" class="btn half" ng-click="timer.cancel()">Cancel</button>
 </div>
 
 <p>Completed Pomodoros: <span>{{ timer.PomodoroTimer.completedPomodoros }}/{{ timer.PomodoroTimer.settings.dailyPomodoroGoal }}</span></p>

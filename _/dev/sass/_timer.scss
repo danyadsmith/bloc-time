@@ -50,16 +50,16 @@
   }
 
   .timer {
-    border: 5px solid $white;
+    border: 6px solid $white;
     border-radius: 100%;
     font-family: 'Open Sans';
-    font-size: 5em;
-    font-weight: 300;
-    line-height: 100%;
+    font-size: 4.25em;
+    font-weight: 700;
+    line-height: 194px;
     margin: 70px auto;
     position: relative;
     text-align: center;
-    width: 75%;
+    width: 65%;
 
     &::before {
       content: '';
@@ -92,15 +92,21 @@
       font-size: 1.5em;
       font-weight: 300;
       height: 40px;
+      margin: 0 auto;
       text-align: center;
       width: 60%;
-      margin: 0 auto;
     }
 
     .half {
       float: left;
-      width: 40%;
       margin: 0 5%;
+      width: 40%;
     }
+  }
+
+  p {
+    margin: 20px 0;
+    text-align: center;
+    width: 100%;
   }
 }
