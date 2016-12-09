@@ -1,21 +1,66 @@
 .timer-panel {
-  @include span(6 of 24 last no-gutters);
   background-color: $tomato;
   color: $white;
   font-family: 'Open Sans Condensed';
   font-weight: 300;
   height: 100vh;
 
+  @include for-phone-only {
+    @include span(24 of 24 first no-gutters);
+  }
+
+  @include for-tablet-portrait-up {
+    @include span(12 of 24 last no-gutters);
+  }
+
+  @include for-tablet-landscape-up {
+    @include span(8 of 24 last no-gutters);
+  }
+
+  @include for-med-desktop-up {
+    @include span(4 of 24 last no-gutters);
+  }
+
+  .btn {
+    border: 1px solid $white;
+    box-shadow: 0 4px $white;
+    color: $white;
+
+    &:hover {
+      border: 1px solid darken($tomato, 20%);
+      box-shadow: 0 4px darken($tomato, 20%);
+      color: darken($tomato, 20%);
+    }
+  }
+
   &.work-session {
     background-color: $stem;
+
+    .btn:hover {
+      border: 1px solid darken($stem, 20%);
+      box-shadow: 0 4px darken($stem, 20%);
+      color: darken($stem, 20%);
+    }
   }
 
   &.paused-session {
     background-color: $seed;
+
+    .btn:hover {
+      border: 1px solid darken($seed, 20%);
+      box-shadow: 0 4px darken($seed, 20%);
+      color: darken($seed, 20%);
+    }
   }
 
   &.break-session {
     background-color: $sky;
+
+    .btn:hover {
+      border: 1px solid darken($sky, 20%);
+      box-shadow: 0 4px darken($sky, 20%);
+      color: darken($sky, 20%);
+    }
   }
 
   h3 {
@@ -79,13 +124,12 @@
   .actions {
     display: block;
     margin: 0 auto;
+    padding-bottom: 100px;
     width: 100%;
 
     .btn {
       background-color: transparent;
-      border: 2px solid $white;
       border-radius: 10px;
-      color: $white;
       cursor: pointer;
       display: block;
       font-family: 'Open Sans';
@@ -97,11 +141,16 @@
       width: 60%;
     }
 
-    .half {
+    button.btn.half {
       float: left;
-      margin: 0 5%;
-      width: 40%;
+      margin: 0 2%;
+      width: 37%;
     }
+
+    button.btn.half.first {
+      margin-left: 39px;
+    }    
+
   }
 
   p {

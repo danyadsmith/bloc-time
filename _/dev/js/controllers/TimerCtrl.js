@@ -23,7 +23,7 @@
     function setTimerState(state){
       switch (state) {
       case 'idle':
-        angular.element(document.querySelector('.timer-panel')).removeClass('work-session');
+        angular.element(document.querySelector('.timer-panel')).removeClass('work-session').removeClass('paused-session');
         break;
       case 'started':
         angular.element(document.querySelector('.timer-panel')).addClass('work-session').removeClass('paused-session');
