@@ -1,0 +1,27 @@
+.task-panel {
+  background-color: $mineshaft;
+  color: $tundora;
+  font-family: 'Open Sans Condensed';
+  font-weight: 300;
+  height: 100vh;
+
+  @include for-phone-only {
+    @include span(0 of 24 last no-gutters);
+  }
+
+  @include for-tablet-portrait-up {
+    @include span(12 of 24 first no-gutters);
+  }
+
+  @include for-tablet-landscape-up {
+    @include span(16 of 24 first no-gutters);
+  }
+
+  @include for-med-desktop-up {
+    @include span(20 of 24 first no-gutters);
+  }
+
+  h2 {
+    margin-top: 96px;
+  }
+}

@@ -17,7 +17,7 @@ I use the Pomodoro Technique to help avoid distractions and focus on critical ta
 
 ### Features
 
-![Pomodoro Timer: Default View](\_/comps/01_work_session_not_started.png)
+![Pomodoro Timer: Default View](\_/comps/work_session_not_started.png)
 
 #### Timer
 
@@ -34,9 +34,11 @@ I use the Pomodoro Technique to help avoid distractions and focus on critical ta
 * Completed Pomodoro sessions automatically apply to the highest priority incomplete task
 * Completed tasks remain visible in the MIT list until they are archived
 
-![Pomodoro Timer: Default View](\_/comps/02_work_session_started.png)
+![Pomodoro Timer: Default View](\_/comps/work_session_started.png)
 
-![Pomodoro Timer: Default View](\_/comps/03_break_session_started.png)
+![Pomodoro Timer: Default View](\_/comps/work_session_paused.png)
 
-![Pomodoro Timer: Default View](\_/comps/04_settings_view.png)
+![Pomodoro Timer: Default View](\_/comps/break_session_started.png)
+
+![Pomodoro Timer: Default View](\_/comps/settings_view.png)
 
