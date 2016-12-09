@@ -16,8 +16,8 @@
 
     PomodoroTimer.headings = {
       idle: 'Length of Next Work Session',
-      started: 'Work Time Remaining',
-      paused: 'Work Session Paused',
+      started: 'Focus Time Remaining',
+      paused: 'Time Remaining after Interruption',
       break: 'Break Time Remaining',
       settings: 'Work and Break Session Settings'
     };
