@@ -51,7 +51,7 @@
           updateTimerUI(this.PomodoroTimer.timerSession, 'started');
         } else if(this.PomodoroTimer.timerSession.remainingTime === 0){
           this.PomodoroTimer.closeSession();
-          resetTimer();
+          resetTimer(this.PomodoroTimer);
           updateTimerUI(this.PomodoroTimer.timerSession, 'idle');
         }
       }.bind(this), 1000, (this.PomodoroTimer.settings.pomodoroLength * 60 + 1));

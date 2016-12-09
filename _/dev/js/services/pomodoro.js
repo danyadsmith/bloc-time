@@ -4,7 +4,7 @@
     this.PomodoroTimer = PomodoroTimer;
 
     PomodoroTimer.settings = {
-      pomodoroLength: 25,
+      pomodoroLength: 1,
       shortBreakLength: 5,
       longBreakLength: 15,
       longBreakAfter: 4,
