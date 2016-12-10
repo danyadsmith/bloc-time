@@ -18,7 +18,7 @@
   }
 
   @include for-med-desktop-up {
-    @include span(4 of 24 last no-gutters);
+    @include span(6 of 24 last no-gutters);
   }
 
   .btn {
@@ -124,7 +124,7 @@
   .actions {
     display: block;
     margin: 0 auto;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
     width: 100%;
 
     .btn {

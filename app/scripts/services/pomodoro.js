@@ -48,6 +48,18 @@
       return session.remainingTime;
     };
 
+    PomodoroTimer.getSessionLength = function(type){
+      if(type === 'break') {
+        if(this.completedPomodoros % this.settings.longBreakAfter === 0) {
+          return this.settings.longBreakLength * 60;
+        } else {
+          return this.settings.shortBreakLength * 60;
+        }
+      } else if (type === 'work') {
+        return this.settings.pomodoroLength * 60;
+      }
+    };
+
     PomodoroTimer.getSettings = function(){
       return this.settings;
     };
@@ -56,9 +68,10 @@
       return this.timerSession;
     };
 
-    PomodoroTimer.initializeSession = function(){
+    PomodoroTimer.initializeSession = function(type){
+      this.timerSession.type = type;
       this.timerSession.startTime = new Date();
-      this.timerSession.projectedEndTime = new Date(this.setProjectedSessionEnd(this.settings.pomodoroLength * 60));
+      this.timerSession.projectedEndTime = new Date(this.setProjectedSessionEnd(this.getSessionLength(type)));
       try { return this.getRemainingTime(this.timerSession); } 
       catch(e){ console.error('Error: ' + e.message); }
     };
@@ -72,6 +85,7 @@
       this.timerSession.started = false;
       this.timerSession.actualEndTime = Date.now();
       this.completedPomodoros++;
+      this.timerSession.type = 'break';
     };
 
     PomodoroTimer.pauseSession = function(){
