@@ -7,12 +7,15 @@
     $scope.started = false;
     $scope.remaining = this.PomodoroTimer.initializeSession();
     $scope.paused = false;
+    $scope.type = this.PomodoroTimer.timerSession.type;
+    $scope.sessions = PomodoroTimer.sessions;
 
     function updateTimerUI(session, state){
       $scope.heading = PomodoroTimer.headings[state];
       $scope.started = session.started;
       $scope.remaining = session.remainingTime;
       $scope.paused = session.paused;
+      $scope.type = session.type;
       setTimerState(state);
     }
 
@@ -23,16 +26,16 @@
     function setTimerState(state){
       switch (state) {
       case 'idle':
-        angular.element(document.querySelector('.timer-panel')).removeClass('work-session').removeClass('paused-session');
+        angular.element(document.querySelector('.timer-panel')).removeClass('work-session').removeClass('paused-session').removeClass('break-session');
         break;
       case 'started':
-        angular.element(document.querySelector('.timer-panel')).addClass('work-session').removeClass('paused-session');
+        angular.element(document.querySelector('.timer-panel')).addClass('work-session').removeClass('paused-session').removeClass('break-session');
         break;
       case 'paused':
-        angular.element(document.querySelector('.timer-panel')).addClass('paused-session');
+        angular.element(document.querySelector('.timer-panel')).addClass('paused-session').removeClass('work-session').removeClass('break-session');
         break;
       case 'break':
-        angular.element(document.querySelector('.timer-panel')).addClass('break-session');
+        angular.element(document.querySelector('.timer-panel')).addClass('break-session').removeClass('work-session').removeClass('paused-session');
         break;
       default:
         break;
@@ -44,17 +47,29 @@
 
     this.countdown = function () {
       this.PomodoroTimer.initializeSession();
-      updateTimerUI(this.PomodoroTimer.timerSession, 'started');
       this.session = $interval(function(){
         if(this.PomodoroTimer.timerSession.remainingTime > 0){
-          this.PomodoroTimer.tick(); 
-          updateTimerUI(this.PomodoroTimer.timerSession, 'started');
-        } else if(this.PomodoroTimer.timerSession.remainingTime === 0){
+          this.PomodoroTimer.timerSession.started = true;
+          this.PomodoroTimer.timerSession.state = 'started';
+          this.PomodoroTimer.tick();
+          if(this.PomodoroTimer.timerSession.type === 'work') 
+            updateTimerUI(this.PomodoroTimer.timerSession, 'started');
+          else
+            updateTimerUI(this.PomodoroTimer.timerSession, 'break');
+        }  
+        else if(this.PomodoroTimer.timerSession.remainingTime === 0 && this.PomodoroTimer.timerSession.type === 'work'){
           this.PomodoroTimer.closeSession();
+          this.PomodoroTimer.timerSession.type = 'break';
+          this.PomodoroTimer.initializeSession();
+          updateTimerUI(this.PomodoroTimer.timerSession, 'break');
+          this.countdown();
+        } else if (this.PomodoroTimer.timerSession.remainingTime === 0 && this.PomodoroTimer.timerSession.type === 'break') {
+          this.PomodoroTimer.closeSession();
+          this.PomodoroTimer.timerSession.type = 'work';
           resetTimer(this.PomodoroTimer);
           updateTimerUI(this.PomodoroTimer.timerSession, 'idle');
         }
-      }.bind(this), 1000, (this.PomodoroTimer.settings.pomodoroLength * 60 + 1));
+      }.bind(this), 1000, (this.PomodoroTimer.getSessionLength() * 60 + 1));
     };
     this.pause = function(){
       $interval.cancel(this.session);
@@ -70,8 +85,10 @@
           updateTimerUI(this.PomodoroTimer.timerSession, 'started');
         } else if(this.PomodoroTimer.timerSession.remainingTime === 0){
           this.PomodoroTimer.closeSession();
-          resetTimer(this.PomodoroTimer);
-          updateTimerUI(this.PomodoroTimer.timerSession, 'idle');
+          this.PomodoroTimer.timerSession.type = 'break';
+          this.PomodoroTimer.initializeSession();
+          updateTimerUI(this.PomodoroTimer.timerSession, 'break');
+          this.countdown();
         }
       }.bind(this), 1000, (this.PomodoroTimer.timerSession.remainingTime/1000 + 1));
     };

@@ -95,30 +95,15 @@
   }
 
   .timer {
-    border: 6px solid $white;
-    border-radius: 100%;
+    //border: 6px solid $white;
+    //border-radius: 25px;
     font-family: 'Open Sans';
-    font-size: 4.25em;
+    font-size: 5em;
     font-weight: 700;
-    line-height: 194px;
-    margin: 70px auto;
-    position: relative;
+    margin: 50px auto;
+    padding: 0;
     text-align: center;
-    width: 65%;
-
-    &::before {
-      content: '';
-      display: block;
-      padding-top: 100%;
-    }
-
-    .time {
-      bottom: 0;
-      left: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
+    width: 70%;
   }
 
   .actions {
@@ -133,7 +118,7 @@
       cursor: pointer;
       display: block;
       font-family: 'Open Sans';
-      font-size: 1.5em;
+      font-size: 1em;
       font-weight: 300;
       height: 40px;
       margin: 0 auto;
@@ -154,7 +139,6 @@
   }
 
   p {
-    margin: 20px 0;
     text-align: center;
     width: 100%;
   }

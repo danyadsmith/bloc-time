@@ -3,8 +3,12 @@
     var PomodoroTimer = {};
     this.PomodoroTimer = PomodoroTimer;
 
+    PomodoroTimer.sessions = [];
+    PomodoroTimer.completedPomodoros = 0;
+    PomodoroTimer.interruptions = 0;
+
     PomodoroTimer.settings = {
-      pomodoroLength: 1,
+      pomodoroLength: 25,
       shortBreakLength: 5,
       longBreakLength: 15,
       longBreakAfter: 4,
@@ -22,8 +26,6 @@
       settings: 'Work and Break Session Settings'
     };
 
-    PomodoroTimer.completedPomodoros = 0;
-    PomodoroTimer.interruptions = 0;
     
     PomodoroTimer.timerSession = {
       type: 'work',
@@ -37,6 +39,18 @@
       projectedEndTime: undefined,
       actualEndTime: undefined,
       taskID: undefined
+    };
+
+    PomodoroTimer.getSessionLength = function(){
+      if(this.timerSession.type === 'work'){
+        return this.settings.pomodoroLength;
+      } else {
+        if(this.completedPomodoros % this.settings.longBreakAfter === 0){
+          return this.settings.longBreakLength;
+        } else {
+          return this.settings.shortBreakLength;
+        }
+      }
     };
 
     PomodoroTimer.setProjectedSessionEnd = function(seconds){
@@ -57,8 +71,8 @@
     };
 
     PomodoroTimer.initializeSession = function(){
-      this.timerSession.startTime = new Date();
-      this.timerSession.projectedEndTime = new Date(this.setProjectedSessionEnd(this.settings.pomodoroLength * 60));
+      this.timerSession.startTime = Date.now();
+      this.timerSession.projectedEndTime = new Date(this.setProjectedSessionEnd(this.getSessionLength() * 60));
       try { return this.getRemainingTime(this.timerSession); } 
       catch(e){ console.error('Error: ' + e.message); }
     };
@@ -71,7 +85,17 @@
     PomodoroTimer.closeSession = function(){
       this.timerSession.started = false;
       this.timerSession.actualEndTime = Date.now();
-      this.completedPomodoros++;
+      this.timerSession.remainingTime = 0;
+      if(this.timerSession.type === 'work'){
+        this.completedPomodoros++;
+      }
+      this.sessions.push({
+        type: this.timerSession.type,
+        startTime: new Date(this.timerSession.startTime).toLocaleString(),
+        actualEndTime: new Date(this.timerSession.actualEndTime).toLocaleString(),
+        interruptions: this.timerSession.interruptions
+      });
+      this.timerSession.interruptions = 0;
     };
 
     PomodoroTimer.pauseSession = function(){
