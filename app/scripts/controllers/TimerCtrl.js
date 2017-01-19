@@ -9,6 +9,18 @@
     $scope.paused = false;
     $scope.type = this.PomodoroTimer.timerSession.type;
     $scope.sessions = PomodoroTimer.sessions;
+    $scope.$watch('remaining', function(newVal, oldVal){
+      console.log('REMAINING | New value: ' + newVal + ' | Old value: ' + oldVal);
+      if(newVal === 0)
+        sessionEndSound.play();
+    });
+    $scope.$watch('heading', function(currVal, pastVal){
+      console.log('HEADING | New value: ' + currVal + '| Old value: ' + pastVal);
+      if(currVal === 'Focus Time Remaining')
+        tickingSound.play().loop();
+      else
+        tickingSound.stop();
+    });
 
     function updateTimerUI(session, state){
       $scope.heading = PomodoroTimer.headings[state];
@@ -98,6 +110,21 @@
       resetTimer(this.PomodoroTimer);
       updateTimerUI(this.PomodoroTimer.timerSession, 'idle');
     };
+
+    var sessionEndSound = new buzz.sound("assets/audio/breakStart.mp3", {
+      preload: true,
+      volume: 50
+    });
+
+    var breakEndSound = new buzz.sound("assets/audio/bikeBell.mp3", {
+      preload: true,
+      volume: 50
+    })
+
+    var tickingSound = new buzz.sound("assets/audio/clockTicking.mp3", {
+      preload: true,
+      volume: 3
+    });
   }
 
   angular
